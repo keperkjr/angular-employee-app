@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'employee-table',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./employee-table.component.css']
 })
 export class EmployeeTableComponent implements OnInit {
+    @Input()
+    employees:any;    
 
   constructor() { }
 
