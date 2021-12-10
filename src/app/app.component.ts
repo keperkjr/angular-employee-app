@@ -11,7 +11,7 @@ import { tap } from 'rxjs/operators';
 export class AppComponent implements OnInit {
     title = 'angular-employee-app';
 
-    employees: Array<Object> = [];
+    employees: Array<any> = [];
 
     constructor(private apiService: ApiService) {
    
@@ -40,7 +40,19 @@ export class AppComponent implements OnInit {
     onDeleteEmployee(id: number) {
     }
 
-    onEditEmployee(updatedEmployee: any) {   
+    onEditEmployee(updatedEmployee: any) {  
+        try {
+            this.apiService.updateEmployee(updatedEmployee).subscribe((data: any) => { 
+                let index = this.employees.findIndex((x) => x.id == data.id);
+                this.employees[index] = data;
+            });
+            // setTimeout(() => {
+            //     alert(`${updatedEmployee.name} updated!`);
+            // }, 200);
+        } catch (error) {
+            // Error will occur for non default entries
+            console.log(error);
+        }         
     }    
 
     // employees = [

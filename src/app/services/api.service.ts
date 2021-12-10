@@ -21,4 +21,10 @@ export class ApiService {
             .set('X-Auth', 'userId');        
         return this.http.post(`${this.baseUrl}/users`, employee, {headers});
     }
+
+    updateEmployee(employee: any) {
+        const headers = new HttpHeaders()
+            .set('X-Auth', 'userId');        
+        return this.http.put(`${this.baseUrl}/users/${employee.id}`, employee, {headers});
+    }    
 }
