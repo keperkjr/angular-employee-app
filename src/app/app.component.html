@@ -2,11 +2,11 @@
     <h1>Employees</h1>
 
     <employee-form 
-        (employeeAdd)="onEmployeeAdd($event)"
+        (addEmployee)="onAddEmployee($event)"
     ></employee-form>
     <employee-table 
         [employees]="employees"
-        (employeeEdit)="onEmployeeEdit($event)"
-        (employeeDelete)="onEmployeeDelete($event)"
+        (editEmployee)="onEditEmployee($event)"
+        (deleteEmployee)="onDeleteEmployee($event)"
     ></employee-table>
 </div>

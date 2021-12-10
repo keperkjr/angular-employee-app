@@ -27,7 +27,7 @@ export class AppComponent {
         },
       ];
       
-      onEmployeeAdd(employee: any) {
+      onAddEmployee(employee: any) {
         const lastId =
         this.employees.length > 0
             ? this.employees[this.employees.length - 1].id
@@ -38,12 +38,12 @@ export class AppComponent {
         this.employees = [...this.employees, newEmployee];
     }   
     
-    onEmployeeDelete(id: number) {
+    onDeleteEmployee(id: number) {
         let index = this.employees.findIndex((x) => x.id == id);
         this.employees.splice(index, 1);
     }
 
-    onEmployeeEdit(updatedEmployee: any) {
+    onEditEmployee(updatedEmployee: any) {
         let index = this.employees.findIndex((x) => x.id == updatedEmployee.id);
         this.employees[index] = updatedEmployee;    
     }

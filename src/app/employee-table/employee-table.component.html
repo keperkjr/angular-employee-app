@@ -22,15 +22,15 @@
                         <td> <input type="text" [(ngModel)]="employee.email" name="empEmail" autocomplete="off"/> </td>
                         <td>
                             <button class="muted-button" (click)="onCancelEdit(employee)">Cancel</button> 
-                            <button (click)="onEmployeeEdit(employee)">Save</button>
+                            <button (click)="onEditEmployee(employee)">Save</button>
                         </td>
                     </ng-template>                       
                     <ng-template #notEditing>
                         <td>{{ employee.name }}</td>
                         <td>{{ employee.email }}</td>
                         <td>
-                            <button (click)="onSetEditMode(employee)">Edit</button>
-                            <button (click)="onEmployeeDelete(employee.id)">Delete</button>
+                            <button (click)="onBeginEdit(employee)">Edit</button>
+                            <button (click)="onDeleteEmployee(employee.id)">Delete</button>
                         </td>
                     </ng-template>                                    
                 </tr>               
