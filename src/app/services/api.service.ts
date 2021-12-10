@@ -10,6 +10,15 @@ export class ApiService {
     constructor(private http: HttpClient) { }
     
     getEmployees() {
-        return this.http.get<any[]>(`${this.baseUrl}/users`);           
+        const params = new HttpParams() 
+            .set('page', '1') 
+            .set('pageSize', '10');        
+        return this.http.get<any[]>(`${this.baseUrl}/users`, {params});           
+    }
+
+    createEmployee(employee: any) {
+        const headers = new HttpHeaders()
+            .set('X-Auth', 'userId');        
+        return this.http.post(`${this.baseUrl}/users`, employee, {headers});
     }
 }

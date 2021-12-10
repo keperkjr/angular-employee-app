@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApiService } from './services/api.service';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -10,17 +11,30 @@ import { ApiService } from './services/api.service';
 export class AppComponent implements OnInit {
     title = 'angular-employee-app';
 
-    employees$!: Observable<any[]>;
+    employees: Array<Object> = [];
 
     constructor(private apiService: ApiService) {
    
-     }
+    }
    
     ngOnInit() {
-        this.employees$ = this.apiService.getEmployees();
+        try {
+            this.apiService.getEmployees().subscribe((data) => {
+                this.employees = data;
+            });
+        } catch (error) {
+            console.log(error)
+        }
     }    
  
     onAddEmployee(employee: any) {
+        try {
+            this.apiService.createEmployee(employee).subscribe((data) => {
+                this.employees.push(data);
+            });
+        } catch (error) {
+            console.log(error);
+        }
     }   
     
     onDeleteEmployee(id: number) {

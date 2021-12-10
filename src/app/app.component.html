@@ -4,11 +4,9 @@
     <app-employee-form 
         (addEmployee)="onAddEmployee($event)"
     ></app-employee-form>
-    <ng-container *ngIf="employees$ | async as employees">
-        <app-employee-table 
-            [employees]="employees"
-            (editEmployee)="onEditEmployee($event)"
-            (deleteEmployee)="onDeleteEmployee($event)"
-        ></app-employee-table>
-    </ng-container>
+    <app-employee-table 
+        [employees]="employees"
+        (editEmployee)="onEditEmployee($event)"
+        (deleteEmployee)="onDeleteEmployee($event)"
+    ></app-employee-table>
 </div>
