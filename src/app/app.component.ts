@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ApiService } from './services/api.service';
+import { ApiService, EmployeeApiService } from './services/api.service';
 import { tap } from 'rxjs/operators';
 
 @Component({
@@ -13,13 +13,11 @@ export class AppComponent implements OnInit {
 
     employees: Array<any> = [];
 
-    constructor(private apiService: ApiService) {
-   
-    }
+    constructor(private employeeApiService: EmployeeApiService) { }
    
     ngOnInit() {
         try {
-            this.apiService.getEmployees().subscribe((data) => {
+            this.employeeApiService.getAll().subscribe((data) => {
                 this.employees = data;
             });
         } catch (error) {
@@ -29,7 +27,7 @@ export class AppComponent implements OnInit {
  
     onAddEmployee(employee: any) {
         try {
-            this.apiService.createEmployee(employee).subscribe((data) => {
+            this.employeeApiService.create(employee).subscribe((data) => {
                 this.employees.push(data);
             });
         } catch (error) {
@@ -39,7 +37,7 @@ export class AppComponent implements OnInit {
     
     onDeleteEmployee(id: number) {
         try {
-            this.apiService.deleteEmployee(id);
+            this.employeeApiService.delete(id);
         } catch (error) {
             console.log(error);
         }      
@@ -49,7 +47,7 @@ export class AppComponent implements OnInit {
 
     onEditEmployee(updatedEmployee: any) {  
         try {
-            this.apiService.updateEmployee(updatedEmployee).subscribe((data: any) => { 
+            this.employeeApiService.update(updatedEmployee).subscribe((data: any) => { 
                 let index = this.employees.findIndex((x) => x.id == data.id);
                 this.employees[index] = data;
             });
