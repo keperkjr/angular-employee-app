@@ -6,6 +6,7 @@
     ></employee-form>
     <employee-table 
         [employees]="employees"
+        (employeeEdit)="onEmployeeEdit($event)"
         (employeeDelete)="onEmployeeDelete($event)"
     ></employee-table>
 </div>

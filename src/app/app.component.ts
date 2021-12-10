@@ -39,8 +39,12 @@ export class AppComponent {
     }   
     
     onEmployeeDelete(id: number) {
-        this.employees = this.employees.filter(
-            employee => employee.id !== id
-          )        
+        let index = this.employees.findIndex((x) => x.id == id);
+        this.employees.splice(index, 1);
+    }
+
+    onEmployeeEdit(updatedEmployee: any) {
+        let index = this.employees.findIndex((x) => x.id == updatedEmployee.id);
+        this.employees[index] = updatedEmployee;    
     }
 }

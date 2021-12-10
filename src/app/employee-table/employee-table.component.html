@@ -6,21 +6,34 @@
     <div *ngIf="employees.length > 0; else noData">
         <table>
             <thead>
-              <tr>
-                <th>Employee name</th>
-                <th>Employee email</th>
-                <th>Actions</th>
-              </tr>
+                <tr>
+                    <th>Employee name</th>
+                    <th>Employee email</th>
+                    <th>Actions</th>
+                </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let employee of employees">
-                  <td>{{ employee.name }}</td>
-                  <td>{{ employee.email }}</td>
-                  <td>
-                      <button>Edit</button>
-                      <button (click)="onEmployeeDelete(employee.id)">Delete</button>
-                  </td>
-              </tr>
+                <tr *ngFor="let employee of employees">
+                    <ng-container
+                        *ngIf="isEditing(employee.id); then editing; else notEditing">
+                    </ng-container> 
+                    <ng-template #editing>
+                        <td> <input type="text" [(ngModel)]="employee.name" name="empName" autocomplete="off" /> </td>
+                        <td> <input type="text" [(ngModel)]="employee.email" name="empEmail" autocomplete="off"/> </td>
+                        <td>
+                            <button class="muted-button" (click)="onCancelEdit(employee)">Cancel</button> 
+                            <button (click)="onEmployeeEdit(employee)">Save</button>
+                        </td>
+                    </ng-template>                       
+                    <ng-template #notEditing>
+                        <td>{{ employee.name }}</td>
+                        <td>{{ employee.email }}</td>
+                        <td>
+                            <button (click)="onSetEditMode(employee)">Edit</button>
+                            <button (click)="onEmployeeDelete(employee.id)">Delete</button>
+                        </td>
+                    </ng-template>                                    
+                </tr>               
             </tbody>
           </table>
     </div>
