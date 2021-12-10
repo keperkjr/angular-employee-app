@@ -38,6 +38,13 @@ export class AppComponent implements OnInit {
     }   
     
     onDeleteEmployee(id: number) {
+        try {
+            this.apiService.deleteEmployee(id);
+        } catch (error) {
+            console.log(error);
+        }      
+        let index = this.employees.findIndex((x) => x.id == id);
+        this.employees.splice(index, 1);         
     }
 
     onEditEmployee(updatedEmployee: any) {  

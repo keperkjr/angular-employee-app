@@ -8,6 +8,12 @@ export class ApiService {
     baseUrl = 'https://jsonplaceholder.typicode.com';
 
     constructor(private http: HttpClient) { }
+
+    getHeaders() {
+        const headers = new HttpHeaders()
+        .set('X-Auth', 'userId'); 
+        return headers;         
+    }
     
     getEmployees() {
         const params = new HttpParams() 
@@ -17,14 +23,17 @@ export class ApiService {
     }
 
     createEmployee(employee: any) {
-        const headers = new HttpHeaders()
-            .set('X-Auth', 'userId');        
+        const headers = this.getHeaders();
         return this.http.post(`${this.baseUrl}/users`, employee, {headers});
     }
 
     updateEmployee(employee: any) {
-        const headers = new HttpHeaders()
-            .set('X-Auth', 'userId');        
+        const headers = this.getHeaders();        
         return this.http.put(`${this.baseUrl}/users/${employee.id}`, employee, {headers});
-    }    
+    } 
+    
+    deleteEmployee(id: number) {
+        const headers = this.getHeaders();      
+        return this.http.delete(`${this.baseUrl}/users/${id}`, {headers});
+    }      
 }
