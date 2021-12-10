@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ElementRef, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'employee-form',
@@ -19,6 +19,9 @@ export class EmployeeFormComponent implements OnInit {
     @Output('employeeAdded')
     employeeEmitter = new EventEmitter();
 
+    @ViewChild("empName")
+    empNameRef!: ElementRef;
+
     constructor() { }
 
     ngOnInit(): void {
@@ -34,6 +37,7 @@ export class EmployeeFormComponent implements OnInit {
         }
         
         this.employeeEmitter.emit(this.employee);
+        this.empNameRef.nativeElement.focus();
 
         this.employee = {
             name: '',

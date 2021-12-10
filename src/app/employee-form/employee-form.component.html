@@ -1,7 +1,7 @@
 <div id="employee-form">
     <form>
         <label for="empName">Employee name</label>
-        <input id="empName" [(ngModel)]="employee.name" name="empName" type="text" autocomplete="off"
+        <input #empName id="empName" [(ngModel)]="employee.name" name="empName" type="text" autocomplete="off"
             [ngClass]="{ 'has-error': submitting && invalidName() }"
             (focus)="clearStatus()"
             (keypress)="clearStatus()"        
