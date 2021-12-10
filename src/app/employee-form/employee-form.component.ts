@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit, Output, ElementRef, ViewChild } from '@angular/core';
 
 @Component({
-  selector: 'employee-form',
+  selector: 'app-employee-form',
   templateUrl: './employee-form.component.html',
   styleUrls: ['./employee-form.component.css']
 })

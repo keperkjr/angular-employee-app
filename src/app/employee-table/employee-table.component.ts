@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
-  selector: 'employee-table',
+  selector: 'app-employee-table',
   templateUrl: './employee-table.component.html',
   styleUrls: ['./employee-table.component.css']
 })

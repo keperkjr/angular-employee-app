@@ -1,12 +1,12 @@
 <div id="app" class="small-container">
     <h1>Employees</h1>
 
-    <employee-form 
+    <app-employee-form 
         (addEmployee)="onAddEmployee($event)"
-    ></employee-form>
-    <employee-table 
+    ></app-employee-form>
+    <app-employee-table 
         [employees]="employees"
         (editEmployee)="onEditEmployee($event)"
         (deleteEmployee)="onDeleteEmployee($event)"
-    ></employee-table>
+    ></app-employee-table>
 </div>

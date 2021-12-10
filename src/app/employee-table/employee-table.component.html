@@ -3,7 +3,7 @@
         <p class="empty-table">No employees</p>
     </ng-template>
 
-    <div *ngIf="employees.length > 0; else noData">
+    <ng-container *ngIf="employees.length > 0; else noData">
         <table>
             <thead>
                 <tr>
@@ -14,14 +14,17 @@
             </thead>
             <tbody>
                 <tr *ngFor="let employee of employees">
-                    <ng-container
+                    <!-- <ng-container
                         *ngIf="isEditing(employee.id); then editing; else notEditing">
-                    </ng-container> 
+                    </ng-container>  -->
+                    <ng-container
+                        *ngTemplateOutlet="isEditing(employee.id) ? editing: notEditing">
+                    </ng-container>
                     <ng-template #editing>
-                        <td> <input type="text" [(ngModel)]="employee.name" name="empName" autocomplete="off" /> </td>
+                        <td> <input type="text" [(ngModel)]="employee.name" name="empName" autocomplete="off"/> </td>
                         <td> <input type="text" [(ngModel)]="employee.email" name="empEmail" autocomplete="off"/> </td>
                         <td>
-                            <button class="muted-button" (click)="onCancelEdit(employee)">Cancel</button> 
+                            <button (click)="onCancelEdit(employee)" class="muted-button" >Cancel</button> 
                             <button (click)="onEditEmployee(employee)">Save</button>
                         </td>
                     </ng-template>                       
@@ -36,5 +39,5 @@
                 </tr>               
             </tbody>
           </table>
-    </div>
+    </ng-container>
 </div>
