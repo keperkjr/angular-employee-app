@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'employee-form',
@@ -12,13 +12,16 @@ export class EmployeeFormComponent implements OnInit {
         email: ''
     };
 
+    @Output('employeeAdded')
+    employeeEmitter = new EventEmitter();
+
     constructor() { }
 
     ngOnInit(): void {
     }
 
     handleSubmit() {
-        console.log(this.employee);
+        this.employeeEmitter.emit(this.employee);
     }
 
 }

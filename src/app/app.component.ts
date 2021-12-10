@@ -26,4 +26,15 @@ export class AppComponent {
           email: 'dinesh@piedpiper.com',
         },
       ];
+
+      onEmployeeAdded(employee: any) {
+        const lastId =
+        this.employees.length > 0
+            ? this.employees[this.employees.length - 1].id
+            : 0;
+        const id = lastId + 1;
+        const newEmployee = { ...employee, id };
+
+        this.employees = [...this.employees, newEmployee];
+    }      
 }
