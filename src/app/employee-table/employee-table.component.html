@@ -1,21 +1,27 @@
 <div id="employee-table">
-    <table>
-      <thead>
-        <tr>
-          <th>Employee name</th>
-          <th>Employee email</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let employee of employees">
-            <td>{{ employee.name }}</td>
-            <td>{{ employee.email }}</td>
-            <td>
-                <button>Edit</button>
-                <button (click)="onEmployeeDelete(employee.id)">Delete</button>
-            </td>
-        </tr>
-      </tbody>
-    </table>
+    <ng-template #noData>
+        <p class="empty-table">No employees</p>
+    </ng-template>
+
+    <div *ngIf="employees.length > 0; else noData">
+        <table>
+            <thead>
+              <tr>
+                <th>Employee name</th>
+                <th>Employee email</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let employee of employees">
+                  <td>{{ employee.name }}</td>
+                  <td>{{ employee.email }}</td>
+                  <td>
+                      <button>Edit</button>
+                      <button (click)="onEmployeeDelete(employee.id)">Delete</button>
+                  </td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
 </div>
