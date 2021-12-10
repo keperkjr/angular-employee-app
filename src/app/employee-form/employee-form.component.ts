@@ -12,6 +12,10 @@ export class EmployeeFormComponent implements OnInit {
         email: ''
     };
 
+    submitting = false;
+    error = false;
+    success = false;
+
     @Output('employeeAdded')
     employeeEmitter = new EventEmitter();
 
@@ -21,7 +25,36 @@ export class EmployeeFormComponent implements OnInit {
     }
 
     handleSubmit() {
+        this.submitting = true
+        this.clearStatus()
+    
+        if (this.invalidName() || this.invalidEmail()) {
+            this.error = true
+            return
+        }
+        
         this.employeeEmitter.emit(this.employee);
+
+        this.employee = {
+            name: '',
+            email: '',
+        }
+        this.error = false
+        this.success = true
+        this.submitting = false        
+    }
+
+    clearStatus() {
+        this.success = false
+        this.error = false
+    }    
+
+    invalidName() {
+        return this.employee.name == '';
+    }
+
+    invalidEmail() {
+        return this.employee.email == '';
     }
 
 }

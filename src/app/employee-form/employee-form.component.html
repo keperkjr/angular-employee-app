@@ -1,9 +1,20 @@
 <div id="employee-form">
     <form>
-        <label>Employee name</label>
-        <input [(ngModel)]="employee.name" name="name" type="text" autocomplete="off" />
-        <label>Employee Email</label>
-        <input [(ngModel)]="employee.email" name="email" type="text" autocomplete="off" />
+        <label for="empName">Employee name</label>
+        <input id="empName" [(ngModel)]="employee.name" name="empName" type="text" autocomplete="off"
+            [ngClass]="{ 'has-error': submitting && invalidName() }"
+            (focus)="clearStatus()"
+            (keypress)="clearStatus()"        
+        />
+        <label for="empEmail">Employee Email</label>
+        <input id="empEmail" [(ngModel)]="employee.email" name="empEmail" type="text" autocomplete="off" 
+            [ngClass]="{ 'has-error': submitting && invalidEmail() }"
+            (focus)="clearStatus()"        
+        />
+        <p *ngIf="error && submitting" class="error-message">
+            ❗ Please fill out all required fields
+        </p>
+        <p *ngIf="success" class="success-message">✅ Employee successfully added</p>        
         <button (click)="handleSubmit()">Add Employee</button>
     </form>
 </div>
