@@ -1,9 +1,9 @@
 <div id="employee-form">
     <form>
-      <label>Employee name</label>
-      <input type="text" />
-      <label>Employee Email</label>
-      <input type="text" />
-      <button>Add Employee</button>
+        <label>Employee name</label>
+        <input [(ngModel)]="employee.name" name="name" type="text" autocomplete="off" />
+        <label>Employee Email</label>
+        <input [(ngModel)]="employee.email"  name="email" type="text" autocomplete="off" />
+        <button (click)="handleSubmit()">Add Employee</button>
     </form>
-  </div>
+</div>
