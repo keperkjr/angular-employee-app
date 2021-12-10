@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'employee-table',
@@ -9,9 +9,16 @@ export class EmployeeTableComponent implements OnInit {
     @Input()
     employees:any;    
 
-  constructor() { }
+    @Output('employeeDelete')
+    employeeDeleteEmitter = new EventEmitter();
 
-  ngOnInit(): void {
-  }
+    constructor() { }
+
+    ngOnInit(): void {
+    }
+
+    onEmployeeDelete(id: number) {
+        this.employeeDeleteEmitter.emit(id);
+    }
 
 }

@@ -1,6 +1,11 @@
 <div id="app" class="small-container">
     <h1>Employees</h1>
 
-    <employee-form (employeeAdded)="onEmployeeAdded($event)"></employee-form>
-    <employee-table [employees]="employees"></employee-table>
+    <employee-form 
+        (employeeAdd)="onEmployeeAdd($event)"
+    ></employee-form>
+    <employee-table 
+        [employees]="employees"
+        (employeeDelete)="onEmployeeDelete($event)"
+    ></employee-table>
 </div>

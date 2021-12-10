@@ -26,8 +26,8 @@ export class AppComponent {
           email: 'dinesh@piedpiper.com',
         },
       ];
-
-      onEmployeeAdded(employee: any) {
+      
+      onEmployeeAdd(employee: any) {
         const lastId =
         this.employees.length > 0
             ? this.employees[this.employees.length - 1].id
@@ -36,5 +36,11 @@ export class AppComponent {
         const newEmployee = { ...employee, id };
 
         this.employees = [...this.employees, newEmployee];
-    }      
+    }   
+    
+    onEmployeeDelete(id: number) {
+        this.employees = this.employees.filter(
+            employee => employee.id !== id
+          )        
+    }
 }

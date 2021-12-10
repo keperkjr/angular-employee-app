@@ -16,7 +16,7 @@ export class EmployeeFormComponent implements OnInit {
     error = false;
     success = false;
 
-    @Output('employeeAdded')
+    @Output('employeeAdd')
     employeeEmitter = new EventEmitter();
 
     @ViewChild("empName")
@@ -27,7 +27,7 @@ export class EmployeeFormComponent implements OnInit {
     ngOnInit(): void {
     }
 
-    handleSubmit() {
+    onEmployeeAdd() {
         this.submitting = true
         this.clearStatus()
     
