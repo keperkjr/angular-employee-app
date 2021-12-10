@@ -10,10 +10,10 @@ export class EmployeeTableComponent implements OnInit {
     employees!: Array<any>;    
 
     @Output('deleteEmployee')
-    employeeDeleteEmitter = new EventEmitter();
+    deleteEmployeeEmitter = new EventEmitter();
 
     @Output('editEmployee')
-    employeeEditEmitter = new EventEmitter();
+    editEmployeeEmitter = new EventEmitter();
 
     editing: number | null = null;
 
@@ -47,13 +47,13 @@ export class EmployeeTableComponent implements OnInit {
 
     onEditEmployee(employee: any) {        
         if (employee.name === '' || employee.email === '') return;
-        this.employeeEditEmitter.emit(employee);
+        this.editEmployeeEmitter.emit(employee);
         this.cachedEmployee = null;
         this.editing = null;        
     }
 
     onDeleteEmployee(id: number) {
-        this.employeeDeleteEmitter.emit(id);
+        this.deleteEmployeeEmitter.emit(id);
     }    
 
 }

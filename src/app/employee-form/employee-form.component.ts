@@ -17,7 +17,7 @@ export class EmployeeFormComponent implements OnInit {
     success = false;
 
     @Output('addEmployee')
-    employeeEmitter = new EventEmitter();
+    addEmployeeEmitter = new EventEmitter();
 
     @ViewChild("empName")
     empNameRef!: ElementRef;
@@ -36,7 +36,7 @@ export class EmployeeFormComponent implements OnInit {
             return
         }
         
-        this.employeeEmitter.emit(this.employee);
+        this.addEmployeeEmitter.emit(this.employee);
         this.empNameRef.nativeElement.focus();
 
         this.employee = {
