@@ -24,6 +24,12 @@ export class EmployeeTableComponent implements OnInit {
     ngOnInit(): void {
     }
 
+    getRowClasses(id: number) {
+        return {
+            'editing': this.isEditing(id)
+        };
+    }
+
     isEditing(id: number) {
         return this.editing === id;
     }

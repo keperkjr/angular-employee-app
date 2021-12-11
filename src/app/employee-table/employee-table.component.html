@@ -4,7 +4,7 @@
     </ng-template>
 
     <ng-container *ngIf="employees.length > 0; else noData">
-        <table>
+        <table class="striped-table">
             <thead>
                 <tr>
                     <th>Employee name</th>
@@ -13,7 +13,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let employee of employees">
+                <tr *ngFor="let employee of employees" [ngClass]="getRowClasses(employee.id)">
                     <!-- <ng-container
                         *ngIf="isEditing(employee.id); then editing; else notEditing">
                     </ng-container>  -->
